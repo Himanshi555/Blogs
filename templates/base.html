@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{#{% load ads_tags %}#}
+{#{% load sekizai_tags %}#}
+{% load staticfiles %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog App</title>
+    <!-- Goole Fonts -->
+
+		<link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto:400,500" rel="stylesheet">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap -->
+    <link href="{% static "assets/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="{% static "assets/fonts/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+
+    <!-- Owl carousel -->
+
+    <link href="{% static "assets/css/owl.carousel.css" %}"  rel="stylesheet">
+	 <link href="{% static "assets/css/owl.theme.default.min.css" %}" rel="stylesheet">
+
+    <!-- Off Canvas Menu -->
+    <link href="{% static "assets/css/offcanvas.min.css" %}" rel="stylesheet">
+
+    <!--Theme CSS -->
+    <link href="{% static "assets/css/style.css" %}" rel="stylesheet">
+
+		<style>
+				body {
+								background-image: url('{% static "assets/img/backgroundimage.jpg" %}');
+				} 
+				 
+				</style>
+
+
+  </head>
+<body >
+<div id="main-wrapper">
+
+    <!-- Header Section -->
+	<header>
+	    <div class="container">
+     	    <div class="header-section">
+				<div class="row">
+		    	 	<div class="col-md-3">
+						<div class="logo">
+						<a  href="base.html"> <img src="{% static "assets/img/blogtour.png" %}" alt="" width="150"></a>
+						</div><!--logo-->
+		    	 	</div><!--col-md-3-->
+                    </div><!--col-md-6-->
+                </div> <!--row-->
+            </div><!--header-section-->
+        <script src="{% static "js/jquery.min.js.download" %}"></script>
+           <script>
+       $(document).ready(function(){
+       $('.reply-btn').click(function(){
+       $(this).parent().parent().next('.replied-comments').fadeToggle()
+       });
+       });
+     </script>
+        </header>
+	    </div><!-- /.container -->
+
+		<nav class="navbar main-menu navbar-inverse navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="offcanvas">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse sidebar-offcanvas">
+				</div>
+			</div>
+		</nav>
+		<!-- .navbar -->
+
+ {% block body_block %}
+
+  {% endblock %}
+
+<!-- Footer Area-->
+	<footer class="footer_section section_wrapper section_wrapper" >
+		<div class="footer_top_section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="text_widget footer_widget">
+							<div class="footer_widget_title"><h2>About Tour </h2></div>
+							</div>
+						</div><!--text_widget-->
+					</div><!--col-xs-3-->
+				</div><!--row-->
+			</div><!--container-->
+		</div><!--footer_top_section-->
+		<a href="#" class="crunchify-top"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+
+		<div class="copyright-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+
+					</div><!--col-xs-3-->
+			    </div><!--container-->
+		    </div><!--copyright-section-->
+        </div>
+	</footer>
+
+
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static "assets/js/jquery.min.js" %}"></script>
+
+<!-- Owl carousel -->
+<script src="{% static "assets/js/owl.carousel.js" %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static "assets/js/bootstrap.min.js" %}"></script>
+
+<!-- Theme Script File-->
+<script src="{% static "assets/js/script.js" %}"></script>
+
+<!-- Off Canvas Menu -->
+<script src="{% static "assets/js/offcanvas.min.js" %}"></script>
+<script>
+$(document).ready(function(){
+   $('.reply-btn').click(function(){
+   $(this).parent().parent().next('.replied-comments').fadeToggle()
+  });
+    });
+</script>
+</body>
+</html>

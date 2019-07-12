@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+
+	<!-- Feature Category Section & sidebar -->
+	<section id="feature_category_section" class="feature_category_section single-page section_wrapper">
+	<div class="container">
+		<div class="row">
+		   	 <div class="col-md-12">
+				<div class="single_content_layout">
+					<div class="item feature_news_item">
+						<div class="item_img">
+                             <img src="{{ blog.Image.url }}" style="width:300px; ">
+						</div><!--item_img-->
+							<div class="item_wrapper">
+								<div class="news_item_title">
+									<h2><a href="#">Blog: {{ blog.Title }}</a></h2>
+								</div><!--news_item_title-->
+	                                <div class="item_content">
+										{{ blog.Description }}
+
+									</div><!--item_content-->
+							</div><!--item_wrapper-->
+                    </div><!--feature_news_item--><br><br><br>
+                    <div class="w3-container w3-deep-orange">
+					<div class="add_a_comment">
+						<div class="single_media_title"><h2>Add a Comment</h2></div>
+                           <div class="main-comment-section">
+                              <div class="container-fluid">
+                                 <div class="container-fluid mt-2">
+                                    <div class="form-droup row">
+                                       <form action="" method="POST">
+                                             {% csrf_token %}
+                                           <div class="form-row">
+                                               <div class="form-group col-md-6 mb-0">
+                                                     {{ c_form.Name|as_crispy_field }}
+                                               </div><br>
+                                               <div class="form-group col-md-12 mb-0">
+                                                   <p> {{ c_form.comment |as_crispy_field}}</p>
+                                               </div>
+                                           </div><br>
+                                             <br>
+                                           <div class="form-group col-md-12 mb-0">
+                                            <input type="submit" value="Submit" class="btn btn-outline-success">
+                                           </div>
+                                       </form>
+                                     </div>
+                                 </div>
+                            <br><br>
+                            <div class="jumbotron">
+                                {{ comments.count }}&nbsp;&nbsp;Comment{{ comments|pluralize }}
+                                         {% for c in comments %}
+                                             <small><p class="mb-0">{{ c.comment }}</p></small>
+                                             <small><cite title="Source Title">{{ c.Name|capfirst }}</cite></small>
+                                <blockquote class="blockquote">
+                                    <footer>
+                                        <button type="button" name="button"
+                                                class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply
+                                        </button>
+                                    </footer>
+                                </blockquote>
+
+                                <div class="replied-comments container mt-2" style="display:none">
+                                    {% for reply in c.replies.all %}
+                                        <div class="container”>
+                                        <small><p class="mb-0">{{reply.comment }} </p>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="form-droup row">
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                             <input type="hidden" name="comment_id" value="{{ c.id }}">
+                                            {{ c_form.comment }}
+                                            <br>
+                                            <input type="submit" value="Submit" class="btn btn-outline-success">
+                                        </form>
+                                    </div>
+                                </div>
+                                         {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                </div>
+                        </div><!--comment_form-->
+					</div><!--add_a_comment-->
+
+				</div><!--single_content_layout-->
+		   	 </div></div>
+
+    </section>
+{% endblock %}

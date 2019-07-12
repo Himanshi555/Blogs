@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+
+
+   {% for v in viewblog %}
+    <!-- Feature Carousel Section -->
+    <section id="feature_news_section" class="feature_news_section section_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="feature_news_carousel">
+                        <div id="featured-news-carousal" class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active feature_news_item">
+                                    <div class="item_wrapper">
+                                        <div class="item_img">
+                                        
+                                            <br>
+                                            <img src="{{v.Image.url}}" style="width:300px; ">
+                                            <!-- <img class="img-responsive" src="assets/img/img-carousel1.jpg" alt="Chania"> -->
+                                        </div> <!--item_img-->
+                                        <div class="item_title_date">
+                                            <div class="news_item_title">
+                                                <h2><a href="{% url 'bl:Detail_view' pk=v.pk %}">{{v.Title}}</a></h2>
+                                            </div>
+                                            <div class="item_meta">{{v.date_and_time}} </div>
+                                        </div> <!--item_title_date-->
+                                    </div>	<!--item_wrapper-->
+                                    <div class="w3-container w3-cyan">
+                                    {{v.Description}}</div></div>
+                                </div><!--feature_news_item-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+              {% endfor %}
+{% endblock %}

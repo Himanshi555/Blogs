@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load sekizai_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+<body>
+{% block body_block %}
+
+{% if ad %}
+{% for image in ad.images.all %}
+<div class="ads-wrapper ad-{{ zone.name|lower }}">
+    <a href="{% url 'ads:ad-click' ad.id %}" target="_blank" rel="nofollow" title="{{ ad.title }}" class="ads-ad visible-{{ image.device }}">
+        <img src="{{ image.image.url }}" class="img-responsive" />
+    </a>
+</div>
+{% endfor %}
+{% elif google_adsense_client and zone.google_adsense_slot %}
+    {% addtoblock "js" %}<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>{% endaddtoblock %}
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="{{ google_adsense_client }}"
+         data-ad-slot="{{ zone.google_adsense_slot }}"
+         data-ad-format="{{ zone.google_adsense_format|default:'auto' }}"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+{% endif %}
+
+</body>
+{% endblock %}
+</html>
+
+
+
